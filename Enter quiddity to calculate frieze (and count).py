@@ -5,7 +5,6 @@ Created by Diego
 """
 
 def get_quiddity_sequence():
-    #Using quiddity sequence to calculate the entire frieze
     try:
         #Enter 0 to terminate the code
         res = input("Please enter the quiddity sequence of your frieze (e.g. 31221): \n")
