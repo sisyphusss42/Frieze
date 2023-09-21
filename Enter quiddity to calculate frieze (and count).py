@@ -1,59 +1,41 @@
 
 while True:
     
-    #Using quiddity sequence to calculate the entire frieze-----------------------------------------------
-    QS=[]
+    #Using quiddity sequence to calculate the entire frieze--------------------------------
     res=input("Please enter the quiddity sequence of your frieze:\n")
     QS = [int(i) for i in res]
-
+    len_QS = len(QS)
+    
     #S=Set of rows
-    S=[[]]
+    S=[[] for i in range(len_QS-1)]
     #Add the first row to S
-    S[0]=[1]*len(QS)
-
+    S[0]=[1]*len_QS
     #Add the second row to S
-    S.append(QS)
+    S[1]=QS
 
     #Add the remaining rows to S
-    len_QS = len(QS)
-    for i in range(1, len_QS-2):
-        #i=1 corresponds to the third row
-        S.append([])
-    
+    for i in range(1, len_QS-2):  #i=1 corresponds to the second row
         for j in range(len_QS):
-            #除數
-            if i==1:
-                div=1
-            else:
-                div = S[i-1][(j+1) % len_QS]
+            #Find the divisor
+            div = S[i-1][(j+1) % len_QS]
                 
-            #新增元素
-            try:
-                S[i+1].append(int((S[i][j]*S[i][j+1]-1)/div))
-            except IndexError:
-                S[i+1].append(int((S[i][j]*S[i][0]-1)/div))    #[i][0]是因為循環
+            #Append the elements
+            S[i+1].append(int((S[i][j]*S[i][(j+1)%len_QS]-1)/div))
 
-
-    print(S)  #Normal output
-
-    #排版輸出----------------------------------------------------------------------
-
-    for i in range(len(QS)-1):
-
-        #每列開頭的空格
-        for k in range(i):
-            print("   ",end="")
+    print(S,"\n")  #Normal output
     
-        for l in range(2):
-            #for l in range(2)是為了印兩遍
-            for j in range(len(QS)):
+    #Formatted output----------------------------------------------------------------------
+    for i in range(len_QS-1):
+        row="   "*i
+        for l in range(2): #output two unit frieze
+            for j in range(len_QS):
                 if S[i][j]<10:
-                    print((chr(ord(str(S[i][j]))+65248)),end="") #若個位數則為全型，佔兩格正常空間
+                    row+=chr(ord(str(S[i][j]))+65248) #If one digit then fullwidth
                 else:
-                    print(S[i][j],end="")  #否則為半型，佔兩格正常空間
-                print("    ",end="")     
-        print("")
-        
+                    row+=S[i][j]  #else halfwidth
+                row+="    "     
+        print(row,"\n")
+    
     C=[] #C is the set of counts, C[1] rep. the num of 1
     for i in range (1,len(S)-1):
         for j in range (len(S[0])):
@@ -62,25 +44,5 @@ while True:
         print(i,":",C.count(i),"  ")
 
     print("\n")
-    
-    
-    
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
