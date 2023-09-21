@@ -3,10 +3,11 @@ This code calculates and outputs four fundamental regions of a frieze pattern gi
 It also ouputs the quantity of each digit in two fundamental regions
 Created by Diego
 """
+
 def get_quiddity_sequence():
     #Using quiddity sequence to calculate the entire frieze--------------------------------
     try:
-        res=input("Please enter the quiddity sequence of your frieze:\n")
+        res = input("Please enter the quiddity sequence of your frieze:\n")
         QS = [int(i) for i in res]  #QS is short for quiddity sequence
         return(QS)
     except ValueError:
@@ -15,11 +16,11 @@ def get_quiddity_sequence():
 def calculate_frieze_pattern(QS):
     len_QS = len(QS)
     #S is the set of rows
-    S=[[] for _ in range(len_QS-1)]
+    S = [[] for _ in range(len_QS-1)]
     #Add the first row to S
-    S[0]=[1]*len_QS
+    S[0] = [1]*len_QS
     #Add the second row to S
-    S[1]=QS
+    S[1] = QS
 
     #Add the remaining rows to S
     for i in range(1, len_QS-2):  #i=1 corresponds to the second row
@@ -28,7 +29,7 @@ def calculate_frieze_pattern(QS):
             div = S[i-1][(j+1) % len_QS]
                 
             #Append the elements
-            S[i+1].append(int((S[i][j]*S[i][(j+1)%len_QS]-1)/div))
+            S[i+1].append(int((S[i][j] * S[i][(j+1)%len_QS] - 1) / div))
     
     return S
 
@@ -36,13 +37,13 @@ def display_frieze_pattern(S):
     len_QS = len(S[0])
     #Formatted output----------------------------------------------------------------------
     for i in range(len_QS-1):
-        row="   " * i
-        for l in range(2): #output two unit frieze
+        row = "   " * i
+        for l in range(2): #output four fundamental regions of the frieze
             for j in range(len_QS):
                 if S[i][j]<10:
-                    row+=chr(ord(str(S[i][j]))+65248) #If one digit then fullwidth, 65248 is the fullwidth offset
+                    row += chr(ord(str(S[i][j]))+65248) #If one digit then fullwidth, 65248 is the fullwidth offset
                 else:
-                    row+=S[i][j]  #else halfwidth
+                    row += S[i][j]  #else halfwidth
                 row+="    "     
         print(row,"\n")
 
