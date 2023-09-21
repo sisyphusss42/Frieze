@@ -7,6 +7,7 @@ Created by Diego
 def get_quiddity_sequence():
     #Using quiddity sequence to calculate the entire frieze
     try:
+        #Enter 0 to terminate the code
         res = input("Please enter the quiddity sequence of your frieze:\n")
         QS = [int(i) for i in res]  #QS is short for quiddity sequence
         return(QS)
@@ -27,7 +28,6 @@ def calculate_frieze_pattern(QS):
         for j in range(len_QS):
             #Find the divisor
             div = S[i-1][(j+1) % len_QS]
-                
             #Append the elements
             S[i+1].append(int((S[i][j] * S[i][(j+1)%len_QS] - 1) / div))
     
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     while True:
         QS = get_quiddity_sequence()
         if (QS==[0]):
-            break  #Enter 0 to terminate the code
+            break
         frieze_pattern = calculate_frieze_pattern(QS)
         print(frieze_pattern,"\n")
         display_frieze_pattern(frieze_pattern)
