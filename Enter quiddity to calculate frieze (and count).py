@@ -47,7 +47,7 @@ def display_frieze_pattern(S):
                 row+="    "     
         print(row,"\n")
 
-def count_digits(S):
+def count_digits(S): #Count the quantity of digits in two fundamental regions of the frieze
     counts = [digit for row in S[1:-1] for digit in row]
     max_count = max(counts)
     for i in range(1, max_count + 1):
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     while True:
         QS = get_quiddity_sequence()
         if (QS==[0]):
-            break
+            break  #Enter 0 to terminate the code
         frieze_pattern = calculate_frieze_pattern(QS)
         print(frieze_pattern,"\n")
         display_frieze_pattern(frieze_pattern)
