@@ -1,3 +1,9 @@
+"""
+This code calculates and outputs four fundamental regions of a frieze pattern given a quiddity sequence.
+It also ouputs the quantity of each digit in two fundamental regions
+Created by Diego
+"""
+
 while True:
     
     #Using quiddity sequence to calculate the entire frieze--------------------------------
@@ -43,3 +49,5 @@ while True:
         print(i,":",C.count(i),"  ")
 
     print("\n")
+
+
