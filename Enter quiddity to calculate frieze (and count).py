@@ -49,5 +49,3 @@ while True:
         print(i,":",C.count(i),"  ")
 
     print("\n")
-
-
