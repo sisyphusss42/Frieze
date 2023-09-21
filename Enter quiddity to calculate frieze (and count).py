@@ -1,4 +1,3 @@
-
 while True:
     
     #Using quiddity sequence to calculate the entire frieze--------------------------------
@@ -44,5 +43,3 @@ while True:
         print(i,":",C.count(i),"  ")
 
     print("\n")
-
-
