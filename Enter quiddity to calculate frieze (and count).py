@@ -1,18 +1,21 @@
 """
-This code calculates and outputs four fundamental regions of a frieze pattern given a quiddity sequence.
+This code calculates and outputs four fundamental regions of a frieze pattern given a quiddity sequence
 It also ouputs the quantity of each digit in two fundamental regions
 Created by Diego
 """
-
-while True:
-    
+def get_quiddity_sequence():
     #Using quiddity sequence to calculate the entire frieze--------------------------------
-    res=input("Please enter the quiddity sequence of your frieze:\n")
-    QS = [int(i) for i in res]
+    try:
+        res=input("Please enter the quiddity sequence of your frieze:\n")
+        QS = [int(i) for i in res]  #QS is short for quiddity sequence
+        return(QS)
+    except ValueError:
+            print("Invalid input. Quiddity sequence should be a sequence of digits.")
+
+def calculate_frieze_pattern(QS):
     len_QS = len(QS)
-    
-    #S=Set of rows
-    S=[[] for i in range(len_QS-1)]
+    #S is the set of rows
+    S=[[] for _ in range(len_QS-1)]
     #Add the first row to S
     S[0]=[1]*len_QS
     #Add the second row to S
@@ -26,26 +29,36 @@ while True:
                 
             #Append the elements
             S[i+1].append(int((S[i][j]*S[i][(j+1)%len_QS]-1)/div))
-
-    print(S,"\n")  #Normal output
     
+    return S
+
+def display_frieze_pattern(S):
+    len_QS = len(S[0])
     #Formatted output----------------------------------------------------------------------
     for i in range(len_QS-1):
-        row="   "*i
+        row="   " * i
         for l in range(2): #output two unit frieze
             for j in range(len_QS):
                 if S[i][j]<10:
-                    row+=chr(ord(str(S[i][j]))+65248) #If one digit then fullwidth
+                    row+=chr(ord(str(S[i][j]))+65248) #If one digit then fullwidth, 65248 is the fullwidth offset
                 else:
                     row+=S[i][j]  #else halfwidth
                 row+="    "     
         print(row,"\n")
-    
-    C=[] #C is the set of counts, C[1] rep. the num of 1
-    for i in range (1,len(S)-1):
-        for j in range (len(S[0])):
-            C.append(S[i][j])
-    for i in range(1,max(C)+1):
-        print(i,":",C.count(i),"  ")
 
+def count_digits(S):
+    counts = [digit for row in S[1:-1] for digit in row]
+    max_count = max(counts)
+    for i in range(1, max_count + 1):
+        print(f"{i}: {counts.count(i)}  ")
     print("\n")
+
+if __name__ == "__main__":
+    while True:
+        QS = get_quiddity_sequence()
+        if (QS==[0]):
+            break
+        frieze_pattern = calculate_frieze_pattern(QS)
+        print(frieze_pattern,"\n")
+        display_frieze_pattern(frieze_pattern)
+        count_digits(frieze_pattern)
