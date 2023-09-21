@@ -40,7 +40,7 @@ def display_frieze_pattern(S):
     len_QS = len(S[0])
     for i in range(len_QS-1):
         row = "   " * i
-        for l in range(2): #output four fundamental regions of the frieze
+        for l in range(2): #Output four fundamental regions of the frieze
             for j in range(len_QS):
                 if S[i][j]<10:
                     row += chr(ord(str(S[i][j]))+65248) #If one digit then fullwidth, 65248 is the fullwidth offset
