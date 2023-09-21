@@ -5,7 +5,7 @@ Created by Diego
 """
 
 def get_quiddity_sequence():
-    #Using quiddity sequence to calculate the entire frieze--------------------------------
+    #Using quiddity sequence to calculate the entire frieze
     try:
         res = input("Please enter the quiddity sequence of your frieze:\n")
         QS = [int(i) for i in res]  #QS is short for quiddity sequence
@@ -35,7 +35,6 @@ def calculate_frieze_pattern(QS):
 
 def display_frieze_pattern(S):
     len_QS = len(S[0])
-    #Formatted output----------------------------------------------------------------------
     for i in range(len_QS-1):
         row = "   " * i
         for l in range(2): #output four fundamental regions of the frieze
