@@ -53,7 +53,7 @@ def count_digits(S): #Count the quantity of digits in two fundamental regions of
     counts = [digit for row in S[1:-1] for digit in row]
     max_count = max(counts)
     for i in range(1, max_count + 1):
-        print(f"{i}: {counts.count(i)}  ")
+        print(f"{i}: {counts.count(i)} ")
     print("\n")
 
 if __name__ == "__main__":
