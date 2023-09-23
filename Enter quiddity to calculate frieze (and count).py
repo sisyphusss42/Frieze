@@ -17,10 +17,13 @@ def calculate_frieze_pattern(QS):
     len_QS = len(QS)
     #S is the set of rows
     S = [[] for _ in range(len_QS-1)]
-    #Add the first row to S
-    S[0] = [1]*len_QS
-    #Add the second row to S
-    S[1] = QS
+    try:
+        #Add the first row to S
+        S[0] = [1]*len_QS
+        #Add the second row to S
+        S[1] = QS
+    except IndexError:  #This means there's a problem with the quiddity sequence
+        return 0
 
     #Add the remaining rows to S
     for i in range(1, len_QS-2):  #i=1 corresponds to the second row
@@ -30,7 +33,7 @@ def calculate_frieze_pattern(QS):
             #Append the elements
             try:
                 S[i+1].append(int((S[i][j] * S[i][(j+1)%len_QS] - 1) / div))
-            except ZeroDivisionError:  #This means there's a problem with the quiddity sequence
+            except ZeroDivisionError:  #This also means there's a problem with the quiddity sequence
                 return 0
     if (max(S[-1]) != 1): #This also means there's a problem with the quiddity sequence
         return 0
