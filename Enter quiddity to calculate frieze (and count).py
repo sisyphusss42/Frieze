@@ -50,14 +50,14 @@ def display_frieze_pattern(S):
                 else:
                     row += str(S[i][j])  #else halfwidth
                 row+="    "     
-        print(row,"\n")
+        print(row)
 
 def count_digits(S): #Count the quantity of digits in two fundamental regions of the frieze
     counts = [digit for row in S[1:-1] for digit in row]
     max_count = max(counts)
     for i in range(1, max_count + 1):
         print(f"{i}: {counts.count(i)} ")
-    print("\n")
+    print()
 
 if __name__ == "__main__":
     while True:
