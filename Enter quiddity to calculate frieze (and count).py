@@ -52,11 +52,14 @@ def display_frieze_pattern(S):
                 row+="    "     
         print(row)
 
-def count_digits(S): #Count the quantity of digits in two fundamental regions of the frieze
-    counts = [digit for row in S[1:-1] for digit in row]
-    max_count = max(counts)
+def count_digits(S):  #Count the quantity of digits in two fundamental regions of the frieze
+    digit_counts = {}  # Create an empty dictionary to store digit counts
+    for row in S[1:-1]:
+        for digit in row:
+            digit_counts[digit] = digit_counts.get(digit,0)+1
+    max_count = max(digit_counts.keys())  # Find the maximum digit
     for i in range(1, max_count + 1):
-        print(f"{i}: {counts.count(i)} ")
+        print(f"{i}: {digit_counts.get(i, 0)}")
     print()
 
 if __name__ == "__main__":
