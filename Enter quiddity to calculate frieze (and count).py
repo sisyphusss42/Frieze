@@ -14,7 +14,11 @@ def get_quiddity_sequence():
             print("Invalid input. Quiddity sequence should be a sequence of digits.")
 
 def calculate_frieze_pattern(QS):
-    len_QS = len(QS)
+    try:
+        len_QS = len(QS)
+    except TypeError:
+        return 0
+
     #S is the set of rows
     S = [[] for _ in range(len_QS-1)]
     try:
